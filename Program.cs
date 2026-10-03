@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Serialization.Formatters;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -22,7 +23,8 @@ namespace Subtema4._1
                 Console.WriteLine("4.Mostrar el primer y último carácter del código.");
                 Console.WriteLine("5.Imprimir la carrera carácter por carácter.");
                 Console.WriteLine("6.Cree una nueva etiqueta de bienvenida agregando");
-                Console.WriteLine("7. Sali del menú ");
+                Console.WriteLine("7.Generar formato correo UPN.");
+                Console.WriteLine("8. Salir del menú ");
                 opcion = int.Parse(Console.ReadLine());// opcion 7, salir del menu 
                 switch (opcion)
                 {
@@ -47,16 +49,43 @@ namespace Subtema4._1
                         Console.WriteLine("el ultimo caracter es: " + carrera[carrera.Length-1]);
 
                         break;
-                    case 7: Console.WriteLine("Saliendo...");
+                    case 5:                 // carrera =  S  I  S  T  E  M  A  S
+                                                       // 0  1  2  3  4  5  6  7
+                         for (int i = 0; i <carrera.Length; i++)
+                        {
+                            Console.WriteLine(carrera[i]);
+                        }
+                    
+                        break;
+                    case 7:
+                        Console.WriteLine("Ingrese nombres y apellidos: ");
+                        string alumno = Console.ReadLine();//alumno = ana olortegui rodriguez
+
+                        string[] partes = alumno.Split(' ');
+                        //partes[] = ana | olortegui |    rodriguez
+                        //        0      1          2           3
+                        string primerNombre = partes[0];//primerNombre = ana
+                        string iniciales = "";
+                        for (int i = 2; i < partes.Length; i++)
+                        {
+                           iniciales+= partes[i].Substring(0, 1);// iniciales += aor
+                        }
+                        Console.WriteLine("Correo UPN generado!!! ");
+                        //anaror@upn.pe
+                        Console.WriteLine($"{primerNombre}{iniciales}@upn.pe");
+                        break;
+                    case 8: Console.WriteLine("Saliendo...");
 
                         break;
                     default : Console.WriteLine("opción no valida");
                         break;
 
                 }
+                Console.ReadLine();// pausar y esperar que el usuario presiones el teclado para continuar
+
 
             }//7 distinto a 7 (true)
-            while (opcion !=7); // > < >= <= ==     !=(distinto a)
+            while (opcion !=8); // > < >= <= ==     !=(distinto a)
         }
     }
 }
